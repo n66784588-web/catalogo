@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo Interactivo</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+.catalogo {
+  max-width: 900px;
+  margin: auto;
+}
+
+.page {
+  margin-bottom: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.page img {
+  width: 100%;
+  transition: transform 0.15s ease;
+  touch-action: pinch-zoom;
+  cursor: zoom-in;
+}
+
+/* SOLO PC */
+@media (hover: hover) {
+  .page img:hover {
+    transform: scale(2);
+    cursor: zoom-out;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="catalogo">
+
+  <div class="page">
+    <img src="page1.jpg" alt="Página 1">
+  </div>
+
+  <div class="page">
+    <img src="page2.jpg" alt="Página 2">
+  </div>
+
+  <div class="page">
+    <img src="page3.jpg" alt="Página 3">
+  </div>
+
+</div>
+
+<script>
+const images = document.querySelectorAll('.page img');
+
+images.forEach(img => {
+  img.addEventListener('mousemove', e => {
+    const x = e.offsetX / img.clientWidth * 100;
+    const y = e.offsetY / img.clientHeight * 100;
+    img.style.transformOrigin = `${x}% ${y}%`;
+  });
+
+  img.addEventListener('mouseleave', () => {
+    img.style.transformOrigin = "center center";
+  });
+});
+</script>
+
+</body>
+</html>
